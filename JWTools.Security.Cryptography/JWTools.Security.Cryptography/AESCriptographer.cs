@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace JWTools.Security.Cryptography
 {
@@ -77,7 +76,7 @@ namespace JWTools.Security.Cryptography
                 {
                     using (CryptoStream cryptoStream = new CryptoStream(cipherFileOutput, encryptor, CryptoStreamMode.Write))
                     {
-                        using(FileStream plainFileStream = new FileStream(plainFilePath, FileMode.Open, FileAccess.Read))
+                        using (FileStream plainFileStream = new FileStream(plainFilePath, FileMode.Open, FileAccess.Read))
                         {
                             plainFileStream.CopyTo(cryptoStream);
                         }
@@ -91,16 +90,16 @@ namespace JWTools.Security.Cryptography
             if (string.IsNullOrEmpty(key)) throw new ArgumentNullException("the key cannot be null or empty");
             if (string.IsNullOrWhiteSpace(cipherFilePath)) throw new ArgumentNullException("cipherFilePath cannot be null");
             if (string.IsNullOrWhiteSpace(outputPlainFilePath)) throw new ArgumentNullException("outputPlainFilePath cannot be null");
-            if (Path.GetFullPath(cipherFilePath) == Path.GetFullPath(outputPlainFilePath)) 
+            if (Path.GetFullPath(cipherFilePath) == Path.GetFullPath(outputPlainFilePath))
                 throw new ArgumentException("the cipherFilePath and the outputPlainFilePath cannot be equals");
 
-            using(ICryptoTransform cryptoTransform = GetCryptoTransformByStringKey(key, KindCryptoTransform.Decryptor))
+            using (ICryptoTransform cryptoTransform = GetCryptoTransformByStringKey(key, KindCryptoTransform.Decryptor))
             {
-                using(FileStream outputPlainFileStream = new FileStream(outputPlainFilePath, FileMode.Create, FileAccess.Write))
+                using (FileStream outputPlainFileStream = new FileStream(outputPlainFilePath, FileMode.Create, FileAccess.Write))
                 {
-                    using(CryptoStream cryptoStream = new CryptoStream(outputPlainFileStream, cryptoTransform, CryptoStreamMode.Write))
+                    using (CryptoStream cryptoStream = new CryptoStream(outputPlainFileStream, cryptoTransform, CryptoStreamMode.Write))
                     {
-                        using(FileStream cipherFileStream = new FileStream(cipherFilePath, FileMode.Open, FileAccess.Read))
+                        using (FileStream cipherFileStream = new FileStream(cipherFilePath, FileMode.Open, FileAccess.Read))
                         {
                             cipherFileStream.CopyTo(cryptoStream);
                         }

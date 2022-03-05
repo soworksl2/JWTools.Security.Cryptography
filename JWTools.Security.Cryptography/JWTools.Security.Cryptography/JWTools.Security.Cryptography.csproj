@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>JWTools.Cryptography</PackageId>
+    <Authors>J. Aguasviva</Authors>
+    <Company>Enadla</Company>
+    <Description>An easy way to encript and decrypt files or strings with Aes method. this library is only an implementation of system.security.cryptography.AesManaged from .NET</Description>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Cryptography</PackageTags>
+    <NeutralLanguage>en</NeutralLanguage>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
 </Project>
